@@ -19,9 +19,12 @@
 - GUI 与构建实现：`Packages/com.popo.bdframework/Editor/EditorPipeline/BuildPipeline/BuildPackage/`
 - 母包生命周期：`Packages/com.popo.bdframework/Editor/EditorPipeline/Behavior/EditorBehavior/`
 - CI 接口：`Packages/com.popo.bdframework/Editor/EditorPipeline/DevOpsPipeline/CI/PublishPipeLineCI.cs`
-- Python 入口：`DevOps/CI/BuildClientPackage/`
+- Python 入口：`.BD-DevOps/BuildTools/BuildClientPackage/`
+- TeamCity Kotlin DSL：`.BD-DevOps/.teamcity/`
 - 构建输出：`DevOps/PublishPackages/`
 - 资源输出：`DevOps/PublishAssets/`
+
+> 规范：自动化源码统一以 `.BD-DevOps/` 子模块为准；`DevOps/` 目录只保留运行配置和生成产物。
 
 ---
 
@@ -178,7 +181,7 @@ CI 侧通过：
 
 ## Python 脚本目录
 
-目录：`DevOps/CI/BuildClientPackage/`
+目录：`.BD-DevOps/BuildTools/BuildClientPackage/`
 
 包含：
 
@@ -256,12 +259,12 @@ python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0 --u
 示例：
 
 ```bash
-python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0
-python3 DevOps/CI/BuildClientPackage/build_ios.py --client-version 0.1.0
-python3 DevOps/CI/BuildClientPackage/build_windows.py --client-version 0.1.0
-python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0 --unity-version 2021.3.58f1
-python3 DevOps/CI/BuildClientPackage/build_ios.py --client-version 0.1.0 --project-dir /path/to/UnityProject
-python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0 --dry-run
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_android.py --client-version 0.1.0
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_ios.py --client-version 0.1.0
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_windows.py --client-version 0.1.0
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_android.py --client-version 0.1.0 --unity-version 2021.3.58f1
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_ios.py --client-version 0.1.0 --project-dir /path/to/UnityProject
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_android.py --client-version 0.1.0 --dry-run
 ```
 
 ### CI 脚本编写规范

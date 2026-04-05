@@ -45,13 +45,13 @@
 ## 示例
 
 ```bash
-python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0
-python3 DevOps/CI/BuildClientPackage/build_ios.py --client-version 0.1.0
-python3 DevOps/CI/BuildClientPackage/build_windows.py --client-version 0.1.0
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_android.py --client-version 0.1.0
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_ios.py --client-version 0.1.0
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_windows.py --client-version 0.1.0
 
-python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0 --unity-version 2022.3.74f1
-python3 DevOps/CI/BuildClientPackage/build_ios.py --client-version 0.1.0 --project-dir /path/to/UnityProject
-python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0 --dry-run
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_android.py --client-version 0.1.0 --unity-version 2022.3.74f1
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_ios.py --client-version 0.1.0 --project-dir /path/to/UnityProject
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_android.py --client-version 0.1.0 --dry-run
 ```
 
 ## Unity 路径
@@ -104,7 +104,7 @@ python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0 --d
 例如：
 
 ```bash
-python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0 --unity-version 2021.3.58f1
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_android.py --client-version 0.1.0 --unity-version 2021.3.58f1
 ```
 
 ### 默认 Unity 版本
@@ -124,7 +124,7 @@ python3 DevOps/CI/BuildClientPackage/build_android.py --client-version 0.1.0 --u
 例如：
 
 ```bash
-python3 DevOps/CI/BuildClientPackage/build_windows.py --client-version 0.1.0 --project-dir /data/build/BDFramework.Core
+python3 .BD-DevOps/BuildTools/BuildClientPackage/build_windows.py --client-version 0.1.0 --project-dir /data/build/BDFramework.Core
 ```
 
 如果不传：

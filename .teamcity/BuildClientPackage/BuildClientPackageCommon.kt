@@ -29,7 +29,7 @@ fun BuildType.configureClientPackageBuildType(
         }
     }
 
-    artifactRules = "DevOps/CI/BuildClientPackage/logs => logs"
+    artifactRules = ".BD-DevOps/BuildTools/BuildClientPackage/logs => logs"
 
     requirements {
         if (agentOsKeyword != null) {

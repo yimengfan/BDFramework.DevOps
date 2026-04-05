@@ -1,6 +1,6 @@
 # TeamCity Kotlin DSL Skeleton
 
-这套 `.teamcity/` 目录用于把 `BDFramework.Core` 的母包构建流程以 **纯代码** 形式托管到 VCS。
+这套 `.BD-DevOps/.teamcity/` 目录用于把 `BDFramework.Core` 的母包构建流程以 **纯代码** 形式托管到 VCS。
 
 当前已经内置 3 个 TeamCity Build Configuration：
 
@@ -8,11 +8,11 @@
 - `Build Client Package - iOS`
 - `Build Client Package - Windows`
 
-这些任务不会把具体业务逻辑写进 TeamCity DSL，而是直接调用仓库中已经存在的 Python 脚本：
+这些任务不会把具体业务逻辑写进 TeamCity DSL，而是直接调用 `.BD-DevOps/BuildTools/BuildClientPackage/` 下的 Python 脚本：
 
-- `DevOps/CI/BuildClientPackage/build_android.py`
-- `DevOps/CI/BuildClientPackage/build_ios.py`
-- `DevOps/CI/BuildClientPackage/build_windows.py`
+- `.BD-DevOps/BuildTools/BuildClientPackage/build_android.py`
+- `.BD-DevOps/BuildTools/BuildClientPackage/build_ios.py`
+- `.BD-DevOps/BuildTools/BuildClientPackage/build_windows.py`
 
 这样做的好处：
 
@@ -27,7 +27,7 @@
 
 项目级参数定义在：
 
-- `.teamcity/Project.kt`
+- `.BD-DevOps/.teamcity/Project.kt`
 
 默认包含：
 
@@ -45,7 +45,7 @@
 
 建议把仓库定义单独放到：
 
-- `.teamcity/vcsRoots/BDFrameworkCoreRepo.kt`
+- `.BD-DevOps/.teamcity/vcsRoots/BDFrameworkCoreRepo.kt`
 
 当前骨架已经这样做了。BuildType 中统一引用：
 
@@ -101,8 +101,7 @@ triggers {
         branchFilter = "+:<default>"
         triggerRules = """
             +:.teamcity/**
-            +:DevOps/CI/**
-            +:DevOps/docs/**
+            +:.BD-DevOps/**
             +:Packages/**
             +:ProjectSettings/**
             -:Library/**
@@ -132,7 +131,7 @@ triggers {
 
 ### 方案一：从零启用 Versioned Settings
 
-1. 把这套 `.teamcity/` 目录提交到仓库
+1. 把这套 `.BD-DevOps/` 子模块内容提交到仓库
 2. 在 TeamCity 中创建一个 Project
 3. 给这个 Project 关联当前仓库的 VCS Root
 4. 进入：
@@ -143,7 +142,7 @@ triggers {
 6. Format 选择：
    - `Kotlin`
 7. Settings path 选择：
-   - `.teamcity`
+   - `.BD-DevOps/.teamcity`
 8. 保存后 TeamCity 会读取 `settings.kts`
 9. 成功后你会看到 3 个 Build Configuration 自动出现
 
@@ -152,7 +151,7 @@ triggers {
 1. 先备份现有 UI 配置
 2. 打开该 Project 的 `Versioned Settings`
 3. 启用 Kotlin DSL
-4. 指向当前仓库与 `.teamcity/`
+4. 指向当前仓库与 `.BD-DevOps/.teamcity/`
 5. 让 TeamCity 从仓库同步配置
 
 ---
@@ -162,7 +161,7 @@ triggers {
 TeamCity 任务会最终执行类似下面的命令：
 
 ```bash
-"%python.executable%" "DevOps/CI/BuildClientPackage/build_android.py" --client-version "%client.version%" --unity-version "%unity.version%" --project-dir "%project.dir%" %build.dryRun.arg%
+"%python.executable%" ".BD-DevOps/BuildTools/BuildClientPackage/build_android.py" --client-version "%client.version%" --unity-version "%unity.version%" --project-dir "%project.dir%" %build.dryRun.arg%
 ```
 
 iOS / Windows 同理，只是脚本不同。
@@ -192,7 +191,7 @@ iOS / Windows 同理，只是脚本不同。
 
 如果你们后续希望强制 Windows 包只能在 Windows Agent 上构建，可修改：
 
-- `.teamcity/buildTypes/BuildClientPackageWindows.kt`
+- `.BD-DevOps/.teamcity/BuildClientPackage/BuildClientPackageWindows.kt`
 
 把：
 
@@ -245,7 +244,7 @@ iOS / Windows 同理，只是脚本不同。
    - 资源构建
    - 单元测试
    - 发布上传
-   建议继续在 `.teamcity/buildTypes/` 下新增独立 BuildType
+   建议继续在 `.BD-DevOps/.teamcity/` 下新增独立 BuildType
 4. 如果流程开始复用，可以继续加 TeamCity Template，但当前 skeleton 保持最小可读即可
 
 
