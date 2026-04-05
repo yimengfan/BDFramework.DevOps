@@ -1,8 +1,7 @@
 import buildTypes.BuildClientPackageAndroid
 import buildTypes.BuildClientPackageIos
 import buildTypes.BuildClientPackageWindows
-import jetbrains.buildServer.configs.kotlin.Project
-import jetbrains.buildServer.configs.kotlin.v2019_2.param
+import jetbrains.buildServer.configs.kotlin.v2019_2.Project
 import vcsRoots.BDFrameworkCoreRepo
 
 object BDFrameworkCoreProject : Project({

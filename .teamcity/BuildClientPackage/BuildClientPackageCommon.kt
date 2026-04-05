@@ -1,6 +1,5 @@
 package buildTypes
 
-import jetbrains.buildServer.configs.kotlin.BuildType
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 import vcsRoots.BDFrameworkCoreRepo

@@ -1,6 +1,6 @@
 package buildTypes
 
-import jetbrains.buildServer.configs.kotlin.BuildType
+import jetbrains.buildServer.configs.kotlin.v2019_2.BuildType
 
 object BuildClientPackageAndroid : BuildType({
     configureClientPackageBuildType(
