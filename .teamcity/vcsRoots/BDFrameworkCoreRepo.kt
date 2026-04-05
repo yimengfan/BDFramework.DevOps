@@ -1,6 +1,6 @@
 package vcsRoots
 
-import jetbrains.buildServer.configs.kotlin.v2019_2.GitVcsRoot
+import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
 object BDFrameworkCoreRepo : GitVcsRoot({
     id("BDFrameworkCoreRepo")
